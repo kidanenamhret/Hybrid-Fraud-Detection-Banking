@@ -1,90 +1,55 @@
-# Hybrid Machine Learning for Real-Time Banking Fraud Detection
+# Hybrid Machine Learning for Real-Time Fraud Detection in Digital Banking
 
-**Author:** Mesfin Alemayehu (ID: 2920/16)  
-**Course:** Research Methods in Computer Science (CoSc3101)  
-**Instructor:** Mr. Birhane Bekele  
-**Institution:** Hawassa University, Department of Computer Science  
-**Submission Date:** April 28, 2026
+This repository contains the LaTeX source code for a research proposal titled:
+
+> **A Hybrid Machine Learning Approach for Real-Time Fraud Detection in Digital Banking Systems**
+
+Submitted to the Department of Computer Science, Hawassa University IoT Campus, as part of the course *Research Methods in Computer Science (CoSc3101)*.
 
 ## Abstract
 
-Digital banking fraud caused global financial losses exceeding $32 billion USD in 2025. Current fraud detection systems face a fundamental technical trade-off: rule-based systems are fast (10-15ms) but miss 62% of sophisticated fraud, while deep learning models achieve higher accuracy but introduce 300-500ms latency per transaction. This research proposes a hybrid machine learning architecture combining Random Forest (supervised) and Autoencoder (unsupervised) operating in parallel. Using the IEEE-CIS Fraud Detection dataset (1.2 million transactions), the system targets sub-100ms latency with >95% recall. A dynamic fusion gate adjusts model weights based on recent false positive rates.
+Digital banking systems face a critical trade-off between security and user experience. Current fraud detection largely relies on static rule‑based heuristics, leading to slow adaptation (2–4 weeks), high false‑positive rates (15–25 legitimate blocks per true fraud), and inference latency (200–500 ms) that exceeds real‑time requirements. Global fraud losses reached $7.3 billion in 2025, and customer churn due to false positives remains a major concern.
 
-## Proposal Document
+This proposal outlines a **hybrid machine learning system** that combines a stacking ensemble (Random Forest, Gradient Boosting, and Logistic Regression) with SMOTE‑ENN resampling to address extreme class imbalance. The system is designed to achieve:
+- **F1‑score > 88%**
+- **Sub‑100ms per‑transaction latency (p99)**
+- Automated temporal adaptation to evolving fraud patterns
 
-The full research proposal is available as [`proposal.pdf`](proposal.pdf).
+The methodology uses the IEEE‑CIS and IBM AML datasets (1M+ transactions) and is evaluated against single‑model baselines. The expected outcome is a lightweight, real‑time fraud detection pipeline suitable for deployment in digital banking gateways, especially in emerging markets.
 
-## Repository Structure
-Hybrid-Fraud-Detection-Banking/
-├── README.md # This file
-├── proposal.pdf # Complete research proposal
-├── references.bib # BibTeX citations (5 peer-reviewed sources)
-├── src/ # Source code directory
-│ ├── preprocess.py # Data preprocessing with SMOTE-ENN
-│ ├── kafka_producer.py # Transaction stream simulator
-│ ├── random_forest_branch.py
-│ ├── autoencoder.py # PyTorch implementation
-│ ├── fusion_gate.py
-│ └── benchmark.py
-├── config/ # Configuration files
-│ ├── model_params.yaml
-│ └── kafka_config.yaml
-├── results/ # Output directory
-│ ├── metrics.csv
-│ ├── confusion_matrix.png
-│ └── latency_distribution.pdf
-└── .github/workflows/
-└── latex_compile.yml # Auto-compiles proposal on push
+## Repository Contents
 
+| File | Description |
+|------|-------------|
+| `main.tex` | Main LaTeX document (proposal) |
+| `references.bib` | BibTeX bibliography file |
+| `logo.jpg` | University logo (institution emblem) |
+| `system_arch.png` | System architecture diagram (Figure 1 in proposal) |
 
-## Prerequisites
+## Requirements
 
-- Python 3.9 or higher
-- 8GB RAM minimum (16GB recommended)
-- NVIDIA GPU (optional, for faster training)
-- Internet connection for dataset download
+To compile the LaTeX document to PDF, you need a TeX distribution such as:
 
-## Installation
+- **TeX Live** (Linux, Windows)
+- **MiKTeX** (Windows)
+- **MacTeX** (macOS)
 
-```bash
-# Clone the repository
-git clone https://github.com/mesfin-2920/Hybrid-Fraud-Detection-Banking.git
-cd Hybrid-Fraud-Detection-Banking
+Additionally, the following LaTeX packages are required (all are included in standard distributions):
 
-# Create virtual environment (recommended)
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+- `geometry`, `amsmath`, `amsfonts`, `amssymb`, `graphicx`
+- `booktabs`, `array`, `hyperref`, `setspace`
+- `pgfgantt`, `float`, `url`
 
-# Install dependencies
-pip install torch scikit-learn pandas numpy kafka-python redis matplotlib seaborn
+## Compilation Instructions
 
-Dataset
-The IEEE-CIS Fraud Detection Dataset is available at:
-https://ieee-dataport.org/open-access/ieee-cis-fraud-detection
+### Using a local LaTeX compiler
 
-Download and extract to ./data/raw/
+1. Clone or download this repository.
+2. Open a terminal in the repository folder.
+3. Run the following commands (requires BibTeX):
 
-Expected Output
-Metric	Target
-Precision	>0.85
-Recall	>0.95
-F1-Score	>0.89
-AUC-ROC	>0.97
-Latency (p95)	<95ms
-Ethics Compliance
-Data Privacy: No PII in dataset. GDPR compliant.
-
-Bias Audit: Stratified sampling + demographic parity testing.
-
-Environmental Impact: 500 GPU-hours offset with carbon donation.
-
-License
-Academic submission to Hawassa University. All rights reserved.
-
-Contact
-Mesfin Alemayehu - Student ID: 2920/16
-Hawassa University Institute of Technology
-Department of Computer Science
-
-Submitted to Mr. Birhane Bekele - April 28, 2026
-
+   ```bash
+   pdflatex main.tex
+   bibtex main
+   pdflatex main.tex
+   pdflatex main.tex
