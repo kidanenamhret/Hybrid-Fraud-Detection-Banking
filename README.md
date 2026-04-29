@@ -1,5 +1,7 @@
 # 🛡️ Hybrid Machine Learning for Fraud Detection
-
+<p align="center">
+  <img src="logo.jpg" width="130" style="border-radius:50%; border:3px solid #2a5298;">
+</p>
 <p align="center">
   <img src="https://readme-typing-svg.herokuapp.com/?lines=Fraud+Detection+with+Machine+Learning;Stacking+Ensemble+Approach;Handling+Class+Imbalance;Designed+for+Real-Time+Scenarios&center=true&width=600&height=45&color=2a5298">
 </p>
